@@ -1,24 +1,29 @@
 use std::ops::Add;
 
+/**
+* u8 should be enough for each attribute, so we can use a single byte for each attribute.
+* and the output of a nn can stay an manageable size.
+*/
+
 #[derive(Debug, PartialEq, Clone)]
 pub struct Attributes {
-    pub agility: f32,
-    pub charisma: f32,
-    pub strength: f32,
-    pub toughness: f32,
-    pub intelligence: f32,
-    pub luck: f32,
+    pub agility: u8,
+    pub charisma: u8,
+    pub strength: u8,
+    pub toughness: u8,
+    pub intelligence: u8,
+    pub luck: u8,
 }
 
 impl Attributes {
     pub fn empty() -> Attributes {
         Attributes {
-            agility: 0.0,
-            charisma: 0.0,
-            strength: 0.0,
-            toughness: 0.0,
-            intelligence: 0.0,
-            luck: 0.0,
+            agility: 0,
+            charisma: 0,
+            strength: 0,
+            toughness: 0,
+            intelligence: 0,
+            luck: 0,
         }
     }
 }
