@@ -27,6 +27,50 @@ impl Attributes {
         }
     }
 
+    pub fn try_add(&mut self, attribute: &str, value: u8) {
+        let new_value = match attribute {
+            "agility" => self.agility.saturating_add(value),
+            "charisma" => self.charisma.saturating_add(value),
+            "strength" => self.strength.saturating_add(value),
+            "toughness" => self.toughness.saturating_add(value),
+            "intelligence" => self.intelligence.saturating_add(value),
+            "luck" => self.luck.saturating_add(value),
+            _ => return, // or handle this case differently
+        };
+
+        match attribute {
+            "agility" => self.agility = new_value,
+            "charisma" => self.charisma = new_value,
+            "strength" => self.strength = new_value,
+            "toughness" => self.toughness = new_value,
+            "intelligence" => self.intelligence = new_value,
+            "luck" => self.luck = new_value,
+            _ => (),
+        }
+    }
+
+    pub fn try_sub(&mut self, attribute: &str, value: u8) {
+        let new_value = match attribute {
+            "agility" => self.agility.saturating_sub(value),
+            "charisma" => self.charisma.saturating_sub(value),
+            "strength" => self.strength.saturating_sub(value),
+            "toughness" => self.toughness.saturating_sub(value),
+            "intelligence" => self.intelligence.saturating_sub(value),
+            "luck" => self.luck.saturating_sub(value),
+            _ => return, // or handle this case differently
+        };
+
+        match attribute {
+            "agility" => self.agility = new_value,
+            "charisma" => self.charisma = new_value,
+            "strength" => self.strength = new_value,
+            "toughness" => self.toughness = new_value,
+            "intelligence" => self.intelligence = new_value,
+            "luck" => self.luck = new_value,
+            _ => (),
+        }
+    }
+
     pub fn to_binary(&self) -> String {
         format!(
             "{:08b}{:08b}{:08b}{:08b}{:08b}{:08b}",
