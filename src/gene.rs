@@ -54,6 +54,20 @@ impl GeneChar {
         }
     }
 
+    pub fn from_binary(s: &str) -> Option<GeneChar> {
+        match s {
+            "001" => Some(GeneChar::A),
+            "010" => Some(GeneChar::C),
+            "011" => Some(GeneChar::G),
+            "100" => Some(GeneChar::T),
+            "101" => Some(GeneChar::N),
+            "110" => Some(GeneChar::K),
+            "111" => Some(GeneChar::PLUS),
+            "000" => Some(GeneChar::MINUS),
+            _ => None,
+        }
+    }
+
     #[allow(dead_code)]
     pub fn to_string(&self) -> String {
         self.value().to_string()
@@ -136,4 +150,16 @@ pub fn sequence_to_binary(gene_string: &str) -> String {
     }
 
     return binary;
+}
+
+pub fn sequence_from_binary(binary: &str) -> String {
+    let mut gene_string = String::new();
+
+    for chunk in binary.chars().collect::<Vec<char>>().chunks(3) {
+        let chunk_str = chunk.iter().collect::<String>();
+        let gene_char = GeneChar::from_binary(chunk_str.as_str()).unwrap();
+        gene_string.push_str(gene_char.value());
+    }
+
+    return gene_string;
 }
