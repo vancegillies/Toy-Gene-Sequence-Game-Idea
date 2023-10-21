@@ -1,0 +1,40 @@
+gene sequence
+- 40 chars long encoded
+- contains 6 unique chars
+  - A, C, G, T, N, K
+- aswell as a `+` and `-` sign
+- each char represents an attribute in an RPG
+    - A = Agility
+    - C = Charisma
+    - G = Strength
+    - T = Toughness
+    - N = Intelligence
+    - K = Luck
+    - + = Attribute magnifier
+    - - = Attribute reducer
+- when sequencing, we calculate attributes for each pair
+    - AA
+        - Agility = 4
+    - AC
+        - Agility = 3
+        - Charisma = 1
+    - AG
+        - Agility = 3
+        - Strength = 1
+    - AT
+        - Agility = 3
+        - Toughness = 1
+    - AN
+        - Agility = 3
+        - Intelligence = 1
+    - AK
+        - Agility = 2
+        - Luck = 2
+    - A+
+        - Agility = 5
+    - A-
+        - Agility = -2
+    - +A
+        - Agility = 6
+    - -A
+        - Agility = -3
