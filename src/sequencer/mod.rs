@@ -1,4 +1,4 @@
-mod attributes;
+pub mod attributes;
 mod sequencer_transformer;
 mod base_transformer;
 
