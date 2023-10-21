@@ -25,6 +25,35 @@ impl GeneChar {
         }
     }
 
+    pub fn from_str(s: &str) -> Option<GeneChar> {
+        match s {
+            "A" => Some(GeneChar::A),
+            "C" => Some(GeneChar::C),
+            "G" => Some(GeneChar::G),
+            "T" => Some(GeneChar::T),
+            "N" => Some(GeneChar::N),
+            "K" => Some(GeneChar::K),
+            "+" => Some(GeneChar::PLUS),
+            "-" => Some(GeneChar::MINUS),
+            _ => None,
+        }
+    }
+
+    // can fit all the values in 3 bits
+    pub fn to_binary(&self) -> &'static str {
+        match self {
+            GeneChar::A => "001",
+            GeneChar::C => "010",
+            GeneChar::G => "011",
+            GeneChar::T => "100",
+            GeneChar::N => "101",
+            GeneChar::K => "110",
+            // MIN and MAX for the modifiers
+            GeneChar::PLUS => "111",
+            GeneChar::MINUS => "000",
+        }
+    }
+
     #[allow(dead_code)]
     pub fn to_string(&self) -> String {
         self.value().to_string()
@@ -96,4 +125,15 @@ pub fn generate_sequence() -> String {
     }
 
     return genes;
+}
+
+pub fn sequence_to_binary(gene_string: &str) -> String {
+    let mut binary = String::new();
+
+    for c in gene_string.chars() {
+        let gene_char = GeneChar::from_str(&c.to_string()).unwrap();
+        binary.push_str(gene_char.to_binary());
+    }
+
+    return binary;
 }
