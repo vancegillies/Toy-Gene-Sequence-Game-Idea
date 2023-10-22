@@ -1,15 +1,18 @@
 mod gene;
 mod sequencer;
+mod csv;
 
 use sequencer::{Sequencer, attributes::Attributes};
 
 
 fn main() {
     let sequencer = Sequencer::new();
-    // generate 1000 random gene strings and their attributes
-    for _ in 0..1000 {
+    let mut data = vec![];
+    for _ in 0..10000 {
         let gene_string = gene::generate_sequence();
         let attributes = sequencer.sequence(&gene_string);
-        println!("{}: {}", gene::sequence_to_binary(gene_string.as_str()), attributes.to_binary());
+        data.push((gene::sequence_to_binary(gene_string.as_str()), attributes.to_binary()));
     }
+
+    csv::write_to_csv("train.csv", data).unwrap();
 }
